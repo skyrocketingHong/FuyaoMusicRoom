@@ -1,0 +1,88 @@
+server:
+  # 运行端口
+  port:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+      tomcat:
+        uri-encoding: UTF-8
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+      sensitive: false
+  endpoints:
+    web:
+      exposure:
+        include: "shutdown"
+spring:
+  security:
+    user:
+      # 接口认证用户名
+      name:
+      # 接口认证密码
+      password:
+  redis:
+    # 服务器ip
+    host:
+    # 端口号
+    port:
+    # 数据库index
+    database:
+    # 密码
+    password:
+  # JavaMailSender 邮件发送的配置
+  mail:
+    # 邮箱服务器
+    host:
+    # 用户名
+    username:
+    # 密码
+    password:
+    test-connection: false
+    # 端口号
+    port: 465
+    default-encoding: UTF-8
+    properties:
+      mail:
+        imap:
+          ssl:
+            socketFactory:
+              fallback: false
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+            socketFactory:
+              class: com.fintech.modules.base.util.mail.MailSSLSocketFactor
+fuyaomusicroom:
+  # 音乐链接过期时间
+  music-expire-time:
+  # 获取音乐失败重试次数
+  retry-count:
+  # 投票切歌率
+  vote-rate: 0.3
+  # 默认音乐列表
+  default-music-file: 'default-list.txt'
+  # QQ音乐热歌榜歌单id
+  qqmusic-top-id:
+  # 网易热歌榜歌单id
+  netease-top-id:
+  # 网易云api
+  music-serve-domain:
+  # QQ音乐api
+  music-serve-domain-qq:
+  # 邮箱配置.
+  # 发送方
+  mail-send-from:
+  # 接收方
+  mail-send-to:
+  # 每个ip限制创建房间数
+  ip_house: 3
+  # 系统最多可创建房间数
+  house_size: 128

@@ -54,7 +54,8 @@ public class FuyaoMusicRoomWebSocketHandlerAsync {
         sessionService.putSession(session, houseId);
         int size = musicBar.getSessions(houseId).size();
         log.info("Connection established: {}, ip: {}, and now online: {}", session.getId(), session.getAttributes().get("remoteAddress").toString(), size);
-        Thread.sleep(500);//要睡一下，不然报错
+        //要睡一下，不然报错
+        Thread.sleep(500);
         sessionService.send(session, MessageType.NOTICE, Response.success((Object) null, "连接到服务器成功！"));
 
         // 1. send online
@@ -73,12 +74,6 @@ public class FuyaoMusicRoomWebSocketHandlerAsync {
                 sessionService.send(session, MessageType.ANNOUNCEMENT, Response.success("", "房间公告"));
             }
         }
-//        else{
-//            while(playing  == null){
-//                Thread.sleep(500);
-//                playing = musicPlayingRepository.getPlaying(houseId);
-//            }
-//        }
         while (playing == null || playing.getPushTime() == null || playing.getDuration() == null || ((playing.getPushTime() + playing.getDuration()) - System.currentTimeMillis() <= 0)) {
             Thread.sleep(500);
             playing = musicPlayingRepository.getPlaying(houseId);
@@ -98,7 +93,7 @@ public class FuyaoMusicRoomWebSocketHandlerAsync {
 
 
     @Async
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
+    public void afterConnectionClosed(WebSocketSession session) {
         String houseId = (String) session.getAttributes().get("houseId");
         sessionService.clearSession(session, houseId);
         int size = musicBar.getSessions(houseId).size();

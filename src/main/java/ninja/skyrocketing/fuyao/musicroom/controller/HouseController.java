@@ -42,14 +42,12 @@ public class HouseController {
     private MusicService musicService;
     @Autowired
     private ConfigService configService;
-    @Autowired
-    private ConfigRepository configRepository;
 
     @MessageMapping("/house/add")
     public void addHouse(House house, StompHeaderAccessor accessor) {
         String sessionId = accessor.getHeader("simpSessionId").toString();
         String houseId = (String) accessor.getSessionAttributes().get("houseId");
-        if (house.getName() == null || house.getName() == "") {
+        if (house.getName() == null || "".equals(house.getName())) {
             sessionService.send(sessionId,
                     MessageType.ADD_HOUSE,
                     Response.failure((Object) null, "房间名称不能为空"), houseId);
@@ -78,14 +76,14 @@ public class HouseController {
         if (houseContainer.size() >= fuyaoMusicRoomProperties.getHouseSize()) {
             sessionService.send(sessionId,
                     MessageType.ADD_HOUSE,
-                    Response.failure((Object) null, "暂时不能新增房间，待其他空房间被自动腾空方可创建。"), houseId);
+                    Response.failure((Object) null, "暂时不能新增房间，待其他空房间被自动腾空方可创建"), houseId);
             return;
         }
         String ip = (String) (accessor.getSessionAttributes().get("remoteAddress"));
         if (houseContainer.isBeyondIpHouse(ip, fuyaoMusicRoomProperties.getIpHouse())) {
             sessionService.send(sessionId,
                     MessageType.ADD_HOUSE,
-                    Response.failure((Object) null, "该网络暂时不能新增房间，待其他空房间被自动腾空方可创建。"), houseId);
+                    Response.failure((Object) null, "该网络暂时不能新增房间，待其他空房间被自动腾空方可创建"), houseId);
             return;
         }
         if (house.getEnableStatus() != null && house.getEnableStatus()) {
@@ -99,7 +97,7 @@ public class HouseController {
             if (key == null) {
                 sessionService.send(sessionId,
                         MessageType.ADD_HOUSE,
-                        Response.failure((Object) null, "订单号不存在或须等待3分钟后系统才能生效，如3分钟后还不存在，请加q群：672905926。"), houseId);
+                        Response.failure((Object) null, "订单号不存在或须等待3分钟后系统才能生效，如3分钟后还不存在，请联系QQ：3055823718"), houseId);
                 return;
             } else if (key.getIsUsed()) {
                 sessionService.send(sessionId,
@@ -126,7 +124,7 @@ public class HouseController {
         house.setId(sessionId);
         house.setCreateTime(System.currentTimeMillis());
         house.setSessionId(sessionId);
-        house.setRemoteAddress(ip);//IPUtils.getRemoteAddress(request);
+        house.setRemoteAddress(ip);
         houseContainer.add(house);
         oldSession.getAttributes().put("houseId", sessionId);
         sessionService.putSession(oldSession, sessionId);
@@ -173,25 +171,22 @@ public class HouseController {
             return;
         }
         House matchHouse = houseContainer.get(house.getId());
-        if (matchHouse.getNeedPwd() && !matchHouse.getPassword().equals(house.getPassword())) {// !matchHouse.getSessionId().equals(sessionId)
+        if (matchHouse.getNeedPwd() && !matchHouse.getPassword().equals(house.getPassword())) {
             sessionService.send(sessionId,
                     MessageType.ENTER_HOUSE,
                     Response.failure((Object) null, "请输入正确的房间密码"), houseId);
             return;
         }
-
         WebSocketSession oldSession = sessionService.clearSession(sessionId, houseId);
         sessionService.send(oldSession,
                 MessageType.ENTER_HOUSE_START,
                 Response.success((Object) null, "进入房间开始"));
         oldSession.getAttributes().put("houseId", house.getId());
         User user = sessionService.putSession(oldSession, house.getId());
-
         // 1. send online
         Online online = new Online();
         online.setCount(fuyaoMusicRoomProperties.getSessions(house.getId()).size());
         sessionService.send(MessageType.ONLINE, Response.success(online), house.getId());
-
         //通知当前要离开的房间总数变化，及推送最新房间歌单等
         int oldHouseCount = fuyaoMusicRoomProperties.getSessions(houseId).size();
         online.setCount(oldHouseCount);
@@ -216,7 +211,7 @@ public class HouseController {
             }
         }
         // 4.设置当前用户角色
-        if (user.getRole() == "admin") {
+        if (user.getRole().equals("admin")) {
             sessionService.send(oldSession,
                     MessageType.AUTH_ADMIN,
                     Response.success((Object) null, "欢迎主人"));

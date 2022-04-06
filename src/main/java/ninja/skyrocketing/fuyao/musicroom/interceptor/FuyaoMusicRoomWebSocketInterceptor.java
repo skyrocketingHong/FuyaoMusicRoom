@@ -13,8 +13,6 @@ import org.springframework.messaging.support.ChannelInterceptor;
 import org.springframework.messaging.support.MessageHeaderAccessor;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.annotation.WebFilter;
-
 /**
  * @author skyrocketing Hong
  */

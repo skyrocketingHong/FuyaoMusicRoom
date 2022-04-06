@@ -10,7 +10,6 @@ import ninja.skyrocketing.fuyao.musicroom.service.MusicService;
 import ninja.skyrocketing.fuyao.musicroom.util.MusicSearchUtils;
 import ninja.skyrocketing.fuyao.musicroom.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -37,9 +36,6 @@ public class MusicServiceImpl implements MusicService {
     private MusicBlackRepository musicBlackRepository;
     @Autowired
     private ConfigRepository configRepository;
-
-    @Autowired
-    private ResourceLoader resourceLoader;
 
     /**
      * 把音乐放进点歌列表

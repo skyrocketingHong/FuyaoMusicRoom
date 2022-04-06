@@ -53,7 +53,7 @@ public class FuyaoMusicRoomWebSocketHandler extends WebSocketHandlerDecorator {
      */
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) throws Exception {
-        fuyaoMusicRoomWebSocketHandlerAsync.afterConnectionClosed(session, closeStatus);
+        fuyaoMusicRoomWebSocketHandlerAsync.afterConnectionClosed(session);
         super.afterConnectionClosed(session, closeStatus);
     }
 

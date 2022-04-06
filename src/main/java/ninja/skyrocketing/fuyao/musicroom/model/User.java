@@ -39,7 +39,7 @@ public class User implements Serializable {
      */
     private String role = "default";
     /**
-     * 最后在线时间..
+     * 最后在线时间
      */
     private Long lastMessageTime;
 

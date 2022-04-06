@@ -1,6 +1,5 @@
 server:
-  # 运行端口
-  port:
+  port: 3100
   servlet:
     encoding:
       charset: UTF-8
@@ -21,28 +20,20 @@ spring:
   security:
     user:
       # 接口认证用户名
-      name:
+      name: {spring security账号}
       # 接口认证密码
-      password:
+      password: {spring security密码}
   redis:
-    # 服务器ip
-    host:
-    # 端口号
-    port:
-    # 数据库index
-    database:
-    # 密码
-    password:
+    host: {redis服务器ip}
+    port: 6379
+    database: {redis服务器数据库编号}
+    password: {redis服务器密码}
   # JavaMailSender 邮件发送的配置
   mail:
-    # 邮箱服务器
-    host:
-    # 用户名
-    username:
-    # 密码
-    password:
+    host: {邮箱IMAP服务器}
+    username: {邮箱账户}
+    password: {邮箱密码}
     test-connection: false
-    # 端口号
     port: 465
     default-encoding: UTF-8
     properties:
@@ -62,27 +53,29 @@ spring:
               class: com.fintech.modules.base.util.mail.MailSSLSocketFactor
 fuyaomusicroom:
   # 音乐链接过期时间
-  music-expire-time:
+  music-expire-time: 1200000
   # 获取音乐失败重试次数
-  retry-count:
+  retry-count: 1
   # 投票切歌率
   vote-rate: 0.3
   # 默认音乐列表
   default-music-file: 'default-list.txt'
   # QQ音乐热歌榜歌单id
-  qqmusic-top-id:
+  qqmusic-top-id: 72
   # 网易热歌榜歌单id
-  netease-top-id:
+  netease-top-id: 11641012
   # 网易云api
-  music-serve-domain:
+  music-serve-domain: {网易云音乐API}
   # QQ音乐api
-  music-serve-domain-qq:
-  # 邮箱配置.
-  # 发送方
-  mail-send-from:
-  # 接收方
-  mail-send-to:
+  music-serve-domain-qq: {QQ音乐API}
+  # 邮箱配置
+  mail-send-from: {发件人邮箱}
+  mail-send-to: {收件人邮箱}
   # 每个ip限制创建房间数
   ip_house: 3
   # 系统最多可创建房间数
   house_size: 128
+  # root密码
+  role_root_password: {root密码}
+  # admin密码
+  role_admin_password: {admin密码}

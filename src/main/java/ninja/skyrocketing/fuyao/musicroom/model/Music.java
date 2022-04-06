@@ -68,5 +68,6 @@ public class Music extends Message implements Serializable {
 
     private Long topTime;
 
-    private String source;//搜索来源：网易、qq
+    //搜索来源：网易、qq
+    private String source;
 }

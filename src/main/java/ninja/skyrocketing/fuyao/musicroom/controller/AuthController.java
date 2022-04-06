@@ -25,7 +25,6 @@ import java.util.List;
 @Controller
 @Slf4j
 public class AuthController {
-
     private static final List<String> roles = new ArrayList<>() {{
         add("root");
         add("admin");

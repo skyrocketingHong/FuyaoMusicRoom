@@ -149,6 +149,7 @@ public class FuyaoMusicRoomProperties {
          * 投票集合，用来临时投票切换音乐，存放每个 session 的唯一 id
          */
         private String skipSet = "fuyaomusicroom_skip";
+
         /**
          * root key, config 子键名
          */

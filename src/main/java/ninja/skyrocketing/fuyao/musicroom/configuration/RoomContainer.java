@@ -29,7 +29,7 @@ public class RoomContainer {
     private final FuyaoMusicRoomProperties fuyaoMusicRoomProperties;
     private final HousesRespository housesRespository;
     private final RetainKeyRepository retainKeyRepository;
-    private CopyOnWriteArrayList<House> houses = new CopyOnWriteArrayList<House>();
+    private CopyOnWriteArrayList<House> houses = new CopyOnWriteArrayList<>();
 
     public RoomContainer(ConfigRepository configRepository, SessionRepository sessionRepository, MusicDefaultRepository musicDefaultRepository, MusicPlayingRepository musicPlayingRepository, MusicPickRepository musicPickRepository, MusicVoteRepository musicVoteRepository, MusicBlackRepository musicBlackRepository, SessionBlackRepository sessionBlackRepository, FuyaoMusicRoomProperties fuyaoMusicRoomProperties, HousesRespository housesRespository, RetainKeyRepository retainKeyRepository) {
         this.configRepository = configRepository;

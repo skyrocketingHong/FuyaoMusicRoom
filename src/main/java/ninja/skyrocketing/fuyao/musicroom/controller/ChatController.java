@@ -62,7 +62,7 @@ public class ChatController {
             chat.setSessionId(sessionId);
             chat.setNickName(user.getNickName());
             String atsession = StringUtils.getSessionId(chat.getContent());
-            if (atsession != null && atsession != "") {
+            if (atsession != null && !"".equals(atsession)) {
                 User atUser = sessionService.getUser(atsession, houseId);
                 if (atUser != null) {
                     sessionService.send(atsession, MessageType.CHAT, Response.success(chat), houseId);

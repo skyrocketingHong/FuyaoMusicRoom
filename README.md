@@ -1,7 +1,7 @@
 # 扶摇 musicroom 的后端
 “一起听歌”系统。基于Spring Boot，前端基于Vue.js。
 
-线上预览: [扶摇 musicroom](https://music.skyrocketing.ninja)
+线上预览: [扶摇 musicroom](https://music.skyrocketing.ninja) (⚠已关闭)
 
 前端: https://github.com/skyrocketingHong/FuyaoMusicRoomFrontend
 
